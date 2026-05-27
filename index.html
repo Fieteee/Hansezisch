@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hanse Ice Tea – Melisse Erdbeere Limette</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #86bc4f;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: #86bc4f;
+    }
+
+    .circle-small {
+      position: absolute;
+      top: 130px;
+      right: 13%;
+      width: 56px;
+      height: 56px;
+      background: #bfd64a;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    .circle-left {
+      position: absolute;
+      top: 340px;
+      left: 7%;
+      width: 130px;
+      height: 130px;
+      background: #bfd64a;
+      border-radius: 50%;
+      opacity: 0.75;
+    }
+
+    .big-shape {
+      position: absolute;
+      right: -220px;
+      bottom: -280px;
+      width: 850px;
+      height: 850px;
+      background: #b5cd4d;
+      border-radius: 50%;
+      opacity: 0.9;
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 28px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 28px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 8% 90px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(68px, 10vw, 132px);
+      line-height: 0.85;
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+      color: #fff1bd;
+      text-shadow: 10px 0 #ff5f6d;
+    }
+
+    .script {
+      font-size: clamp(46px, 7vw, 86px);
+      color: #ff5f6d;
+      font-style: italic;
+      font-family: Georgia, serif;
+      margin-top: 8px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px white;
+    }
+
+    .intro {
+      max-width: 540px;
+      font-size: 22px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 36px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 42px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 28px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 900;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: #ff5f6d;
+      color: white;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+    }
+
+    .btn-secondary {
+      color: white;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    .facts {
+      display: flex;
+      gap: 34px;
+      flex-wrap: wrap;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .fact span {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0.85;
+      font-weight: 800;
+    }
+
+    .visual {
+      position: relative;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .can {
+      width: 480px;
+      height: auto;
+      border-radius: 58px;
+      background: linear-gradient(180deg, #eaf4cf 0%, #93c84d 35%, #86bc4f 100%);
+      border: 7px solid rgba(255,255,255,0.72);
+      box-shadow: 0 45px 90px rgba(0,0,0,0.28);
+      position: relative;
+      overflow: hidden;
+      transform: rotate(-7deg);
+    }
+
+    .can-top {
+      height: 58px;
+      background: linear-gradient(180deg, #f7f7f1, #bbb8a9);
+    }
+
+    .logo-placeholder {
+      width: 140px;
+      height: 50px;
+      border: 2px dashed rgba(255,255,255,0.7);
+      border-radius: 12px;
+      margin: 28px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .logo-image {
+      width: 400px;
+      display: block;
+      margin: 28px auto 0;
+      object-fit: contain;
+    }
+
+    .mockup-image {
+      width: 100%;
+      max-width: 460px;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+      filter: drop-shadow(0 30px 40px rgba(0,0,0,0.25));
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .can-title {
+      text-align: center;
+      margin-top: 55px;
+    }
+
+    .can-title .hanse {
+      font-size: 54px;
+      font-weight: 1000;
+      line-height: 0.9;
+      color: #fff1bd;
+      text-shadow: 6px 0 #ff5f6d;
+    }
+
+    .can-title .ice {
+      font-family: Georgia, serif;
+      font-size: 38px;
+      font-style: italic;
+      color: #ff5f6d;
+      text-shadow: 1px 1px white;
+    }
+
+    .fruit-area {
+      position: absolute;
+      inset: 230px 20px 130px;
+    }
+
+    .strawberry {
+      position: absolute;
+      width: 105px;
+      height: 135px;
+      background: #ef4b3f;
+      border: 4px solid #111;
+      border-radius: 55% 55% 60% 60%;
+      transform: rotate(14deg);
+      top: 5px;
+      left: 80px;
+    }
+
+    .strawberry::before {
+      content: "";
+      position: absolute;
+      top: -28px;
+      left: 20px;
+      width: 72px;
+      height: 42px;
+      background: #3c922f;
+      clip-path: polygon(50% 0, 62% 35%, 100% 18%, 74% 55%, 92% 100%, 52% 70%, 12% 100%, 30% 55%, 0 18%, 38% 35%);
+    }
+
+    .strawberry i {
+      position: absolute;
+      width: 8px;
+      height: 14px;
+      background: #ffd25d;
+      border: 2px solid #111;
+      border-radius: 50%;
+    }
+
+    .strawberry i:nth-child(1) { top: 25px; left: 25px; }
+    .strawberry i:nth-child(2) { top: 42px; left: 60px; }
+    .strawberry i:nth-child(3) { top: 70px; left: 32px; }
+    .strawberry i:nth-child(4) { top: 88px; left: 70px; }
+
+    .lime {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #b8ef78;
+      border: 4px solid #111;
+      bottom: 0;
+      left: 18px;
+      overflow: hidden;
+    }
+
+    .lime::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      border: 5px solid white;
+      opacity: 0.9;
+    }
+
+    .lime::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, transparent 49%, #fff 50%, transparent 51%),
+                  linear-gradient(90deg, transparent 49%, #fff 50%, transparent 51%),
+                  linear-gradient(135deg, transparent 49%, #fff 50%, transparent 51%);
+      opacity: 0.8;
+    }
+
+    .leaf {
+      position: absolute;
+      width: 96px;
+      height: 50px;
+      background: #5daa42;
+      border: 4px solid #111;
+      border-radius: 100% 0 100% 0;
+      transform: rotate(25deg);
+    }
+
+    .leaf.one { top: 65px; left: 2px; }
+    .leaf.two { bottom: 28px; right: 4px; transform: rotate(-35deg); }
+
+    .splash {
+      position: absolute;
+      width: 190px;
+      height: 34px;
+      background: #d7f58a;
+      border: 4px solid #111;
+      border-radius: 999px;
+      transform: rotate(35deg);
+      left: 25px;
+      top: 120px;
+      opacity: 0.95;
+    }
+
+    .flavor {
+      position: absolute;
+      bottom: 82px;
+      left: 24px;
+      right: 24px;
+      text-align: center;
+      font-size: 20px;
+      line-height: 1.15;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
+
+    .volume {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      font-size: 32px;
+      font-weight: 1000;
+    }
+
+    .features {
+      position: relative;
+      z-index: 2;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 8% 90px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.16);
+      backdrop-filter: blur(12px);
+    }
+
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      background: #ff5f6d;
+      border-radius: 18px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: rgba(255,255,255,0.82);
+      line-height: 1.55;
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      padding: 28px 8%;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+      }
+
+      .intro {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .buttons,
+      .facts {
+        justify-content: center;
+      }
+
+      .visual {
+        min-height: 560px;
+      }
+
+      .can {
+        width: 240px;
+        height: 520px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="circle-small"></div>
+    <div class="circle-left"></div>
+    <div class="big-shape"></div>
+
+    <header>
+      <div class="logo">Hanse</div>
+      <nav>
+        <a href="#produkt">Produkt</a>
+        <a href="#geschmack">Geschmack</a>
+        <a href="#kaufen">Kaufen</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="produkt">
+      <div class="content">
+        <div class="badge">New Summer Taste</div>
+        <img src="Bilder/Logo_Hansezisch_ohne.svg" class="logo-image" alt="Brand Logo" >
+       
+        <p class="intro">
+          Melisse, Erdbeere und Limette in einer frischen Kombination:
+          spritzig, fruchtig und perfekt für warme Tage.
+        </p>
+
+        <div class="buttons">
+          <a href="#kaufen" class="btn btn-primary">Jetzt entdecken</a>
+          <a href="#geschmack" class="btn btn-secondary">Geschmack erleben</a>
+        </div>
+
+        <div class="facts">
+          <div class="fact">
+            <strong>0g</strong>
+            <span>Zucker</span>
+          </div>
+          <div class="fact">
+            <strong>0,33L</strong>
+            <span>Dose</span>
+          </div>
+          <div class="fact">
+            <strong>Fresh</strong>
+            <span>Sommerdrink</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual">
+        
+            <img src="Bilder/Mockup_RET.png" class="mockup-image" alt="Produkt Mockup">
+
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="geschmack">
+      <article class="card">
+        <div class="card-icon"></div>
+        <h3>Fruchtig frisch</h3>
+        <p>Die süße Erdbeere trifft auf spritzige Limette und aromatische Melisse.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon"></div>
+        <h3>Ohne Zucker</h3>
+        <p>Leichter Eistee-Geschmack mit moderner Zero-Sugar-Ausrichtung.</p>
+      </article>
+
+      <article class="card" id="kaufen">
+        <div class="card-icon"></div>
+        <h3>Sommer im Design</h3>
+        <p>Knallige Farben, starke Kontraste und ein Look, der direkt auffällt.</p>
+      </article>
+    </section>
+
+    <footer>
+      © 2026 Hanse Ice Tea · Melisse Erdbeere Limette · Demo Landingpage
+    </footer>
+  </main>
+</body>
+</html>
